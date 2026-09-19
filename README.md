@@ -969,7 +969,7 @@ This project was developed as a buildathon project for demonstration and evaluat
 
 <img width="1600" height="685" alt="WhatsApp Image 2026-09-19 at 2 03 31 PM" src="https://github.com/user-attachments/assets/d5dc74d6-9d28-47f4-a2bb-f75294ade1db" />
 
-<img width="1600" height="694" alt="WhatsApp Image 2026-09-19 at 2 03 31 PM (1)" src="https://github.com/user-attachments/assets/b14288f8-d9ad-4c9c-a9e8-c4f7c5c11d07" />
+<img width="1600" height="696" alt="WhatsApp Image 2026-09-19 at 2 03 31 PM (2)" src="https://github.com/user-attachments/assets/b55d1aed-e85f-4d6b-b64c-13d8166db3f5" />
 
 
 
