@@ -1,0 +1,9 @@
+{
+  "short_name": "CompanyOS",
+  "name": "CompanyOS - AI-Powered Company Intelligence",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#061426",
+  "background_color": "#061426"
+}
