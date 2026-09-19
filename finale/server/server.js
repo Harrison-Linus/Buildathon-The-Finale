@@ -1,0 +1,18 @@
+const express = require('express');
+const cors = require('cors');
+const { employees, roles, skills, matching, gap, roadmap } = require('./data/mockData');
+const app = express();
+const port = process.env.PORT || 5000;
+app.use(cors());
+app.use(express.json());
+app.get('/api/health', (req, res) => res.json({ status: 'ok', service: 'talent-discovery-api' }));
+app.get('/api/employees', (req, res) => res.json(employees));
+app.get('/api/employees/:id', (req, res) => { const employee = employees.find(item => item.id === req.params.id); employee ? res.json(employee) : res.status(404).json({ error: 'Employee not found' }); });
+app.get('/api/roles', (req, res) => res.json(roles));
+app.get('/api/skills', (req, res) => res.json(skills));
+app.post('/api/analyze-skills', (req, res) => { const employee = employees.find(item => item.id === req.body.employeeId); if (!employee) return res.status(404).json({ error: 'Employee not found' }); res.json({ employeeId: employee.id, currentSkills: employee.skills, discoveredSkills: employee.transferableSkills, summary: 'The employee demonstrates strong software development and analytical capabilities.' }); });
+app.post('/api/match-role', (req, res) => { const result = matching(req.body.employeeId, req.body.roleId); result ? res.json(result) : res.status(404).json({ error: 'Employee or role not found' }); });
+app.post('/api/skill-gap', (req, res) => { const result = gap(req.body.employeeId, req.body.roleId); result ? res.json(result) : res.status(404).json({ error: 'Employee or role not found' }); });
+app.post('/api/career-roadmap', (req, res) => { const result = roadmap(req.body.employeeId, req.body.roleId); result ? res.json(result) : res.status(404).json({ error: 'Employee or role not found' }); });
+app.post('/api/career-chat', (req, res) => { const message = String(req.body.message || '').toLowerCase(); let response = 'I found several strong internal mobility opportunities. Try asking about AWS skills, Cloud Engineer readiness, or Engineering skill gaps.'; if (message.includes('aws')) response = 'Based on the current employee data, 4 employees have AWS-related skills. Elena Rossi and Nora Williams have the strongest infrastructure profile.'; if (message.includes('cloud')) response = 'Elena Rossi is the strongest Cloud Engineer match today, followed by Nora Williams and Arun Kumar with targeted upskilling.'; if (message.includes('gap')) response = 'Docker and Cloud Networking are the most visible organization-wide gaps, especially across Engineering.'; res.json({ response }); });
+app.listen(port, () => console.log(`Talent Discovery API listening on http://localhost:${port}`));
